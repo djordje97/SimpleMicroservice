@@ -1,0 +1,84 @@
+version: '3.9'
+
+
+services:
+  user-db:
+    image: postgres:latest
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - ~/apps/postgres:/var/lib/postgresql/data
+      - ./Data:/docker-entrypoint-initdb.d
+
+    environment:
+      - POSTGRES_PASSWORD=s@admin
+      - POSTGRES_USER=userdb
+      - POSTGRES_DB=identity-db
+    networks:
+      - microservice-network
+
+  product-db:
+    image: mysql:latest
+    restart: always
+    ports:
+      - "3306:3306"
+    expose:
+      - '3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=hardPassword
+      - MYSQL_USER=productdb
+      - MYSQL_PASSWORD=hardPassword
+      - MYSQL_DATABASE=product-db
+    volumes:
+      - ~/apps/mysql:/var/lib/mysql
+      - ./Data/product-service.sql:/docker-entrypoint-initdb.d/1.sql
+    networks:
+      - microservice-network
+
+  api-gateway:
+    depends_on:
+      - user-db
+      - product-db
+    build: 
+      context: ./ApiGateway
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+    networks:
+      - microservice-network
+
+  identity-service:
+    depends_on:
+      - user-db
+    build: 
+      context: ./IdentityService
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8081
+    networks:
+      - microservice-network
+  
+  product-service:
+    depends_on:
+      - product-db
+    build: 
+      context: ./ProductService
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8082
+    networks:
+      - microservice-network
+
+networks:
+  microservice-network:
+    driver: bridge

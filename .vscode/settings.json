@@ -1,0 +1,22 @@
+{
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.colorTheme": "GitHub Dark",
+    "editor.fontVariations": true,
+    "editor.fontFamily": "Fira Code Retina",
+    "editor.fontWeight": "450",
+    "editor.fontLigatures": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit",
+      "source.removeUnusedImports": "explicit",
+      "source.fixAll": "explicit",
+      "source.sortMembers": "explicit"
+    },
+    "editor.formatOnSave": true,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "terminal.integrated.fontFamily": "Fira Code Retina",
+    "terminal.integrated.fontWeight": "450",
+    "dotnet.automaticallySyncWithActiveItem": true,
+    "explorer.compactFolders": false,
+  }
+  
