@@ -41,8 +41,8 @@ services:
       - user-db
       - product-db
     build: 
-      context: ./ApiGateway
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ApiGateway/Dockerfile
     ports:
       - "8080:8080"
     environment:
@@ -55,8 +55,8 @@ services:
     depends_on:
       - user-db
     build: 
-      context: ./IdentityService
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: IdentityService/Dockerfile
     ports:
       - "8081:8081"
     environment:
@@ -69,8 +69,8 @@ services:
     depends_on:
       - product-db
     build: 
-      context: ./ProductService
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ProductService/Dockerfile
     ports:
       - "8082:8082"
     environment: 

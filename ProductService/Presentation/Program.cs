@@ -16,7 +16,7 @@ builder.Services.AddAuthenticationJwtBearer(s => s.SigningKey = builder.Configur
 
 
 var app = builder.Build();
-app.UseDefaultExceptionHandler();
+app.UseExceptionHandler();
 app.UseSwaggerGen();
 
 app

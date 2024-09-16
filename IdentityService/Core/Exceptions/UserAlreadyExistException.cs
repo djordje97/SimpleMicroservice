@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Core.Exceptions.Abstraction;
+using Common.Exceptions;
 
 namespace Core.Exceptions
 {
-    public class UserAlreadyExistException : DomainException
+    public class UserAlreadyExistException : BadRequestException
     {
-        public UserAlreadyExistException() : base("User with provided email already exists.", ErrorType.BadRequest)
+        public UserAlreadyExistException() : base("User with provided email already exists.")
         {
 
         }

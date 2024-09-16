@@ -3,7 +3,7 @@ using FastEndpoints.Swagger;
 using Infrastructure;
 using Core;
 using Application;
-using Presentation.Extensions;
+using Common;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,8 +14,7 @@ builder.Services.SwaggerDocument();
 builder.Services.RegisterApplication()
                 .RegisterInfrastructure(builder.Configuration);
 
-builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
-builder.Services.AddProblemDetails();
+builder.Services.AddExceptionHandling();
 
 var app = builder.Build();
 
