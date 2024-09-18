@@ -29,6 +29,6 @@ namespace Presentation.Mapper
 
         public static LoginUserCommand ToCommand(this LoginUserRequest request) => new LoginUserCommand(request.Email, request.Password);
 
-        public static LoginUserResponse ToApiResponse(this TokenResponse tokenResponse) => new LoginUserResponse(tokenResponse.AccessToken, tokenResponse.RefreshToken);
+        public static LoginUserResponse ToApiResponse(this TokenResponse tokenResponse) => new LoginUserResponse(tokenResponse.AccessToken);
     }
 }

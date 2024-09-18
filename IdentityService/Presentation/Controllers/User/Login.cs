@@ -19,7 +19,7 @@ namespace Presentation.Controllers.User
 
         public override void Configure()
         {
-            Post("users/login");
+            Post("auth/login");
             AllowAnonymous();
         }
 

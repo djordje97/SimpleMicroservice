@@ -8,17 +8,15 @@ namespace Presentation.Contracts.User
     public class LoginUserResponse
     {
         public string AccessToken { get; set; }
-        public string RefreshToken { get; set; }
 
         public LoginUserResponse()
         {
 
         }
 
-        public LoginUserResponse(string accessToken, string refreshToken)
+        public LoginUserResponse(string accessToken)
         {
             AccessToken = accessToken;
-            RefreshToken = refreshToken;
         }
     }
 }

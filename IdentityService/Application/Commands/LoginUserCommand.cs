@@ -45,5 +45,5 @@ namespace Application.Commands
 
     public record LoginUserCommand(string Email, string Password) : IRequest<TokenResponse>;
 
-    public record TokenResponse(string AccessToken, string RefreshToken);
+    public record TokenResponse(string AccessToken);
 }

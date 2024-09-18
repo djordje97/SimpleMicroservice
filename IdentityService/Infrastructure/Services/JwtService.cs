@@ -38,19 +38,8 @@ namespace Infrastructure.Services
 
             var securityToken = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(securityToken);
-            var refreshToken = GenerateRefreshToken();
 
-            return Task.FromResult(new TokenResponse(tokenString, refreshToken));
-        }
-
-        public string GenerateRefreshToken()
-        {
-            var randomNumber = new byte[32];
-            using (var rng = RandomNumberGenerator.Create())
-            {
-                rng.GetBytes(randomNumber);
-                return Convert.ToBase64String(randomNumber);
-            }
+            return Task.FromResult(new TokenResponse(tokenString));
         }
     }
 
